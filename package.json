@@ -1,0 +1,16 @@
+{
+  "name": "mineflayer-bot",
+  "version": "1.0.0",
+  "description": "A Minecraft bot using mineflayer with logging and auto-auth features.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "mineflayer": "^4.0.0",
+    "log4js": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
