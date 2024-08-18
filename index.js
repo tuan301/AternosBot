@@ -1,5 +1,17 @@
 const mineflayer = require('mineflayer');
 const log4js = require("log4js");
+const express = require('express');
+
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Bot Is Ready For AFK');
+}); 
+
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
 
 log4js.configure({
     appenders: {
@@ -83,13 +95,13 @@ bot.on('death', () => {
   }, 1000);
 });
 
-if (config.utils['auto-reconnect']) {
-  bot.on('end', () => {
+bot.on('end', () => {
+  if (config.utils['auto-reconnect']) {
     setTimeout(() => {
       bot = createBot();
     }, config.utils['auto-reconnect-delay']);
-  });
-}
+  }
+});
 
 bot.on('kicked', (reason) => {
   if (typeof reason !== 'string') {
@@ -122,7 +134,7 @@ bot.on('error', (err) => {
 });
 
 bot.once('spawn', () => {
-  logger.info("Bot joined to the server");
+  logger.info("Bot joined the server");
 
   if (config.utils['auto-auth'].enabled) {
     logger.info('Started auto-auth module');
